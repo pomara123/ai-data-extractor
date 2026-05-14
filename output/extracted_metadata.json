@@ -1,0 +1,22 @@
+{
+  "experiment_id": "EXP-001",
+  "data_source": "in_house",
+  "data_retention": "long_term",
+  "function": "validation",
+  "file_type": "fcs",
+  "modality": "flow_cytometry",
+  "species": "human",
+  "cell_line": "primary_cells",
+  "treatment": "untreated",
+  "marker": [
+    "CD3",
+    "CD4",
+    "CD8",
+    "CD19",
+    "CD45",
+    "CD56",
+    "DAPI"
+  ],
+  "microscopy_type": "none",
+  "instrument_name": "thermo_attune_nxt"
+}

@@ -1,0 +1,102 @@
+{
+  "experiment": {
+    "id": "EXP-002",
+    "title": "B Cell Activation Assay",
+    "version": {
+      "number": 1,
+      "type": "VERSION",
+      "createdOn": "2024-02-20T08:45:00Z"
+    },
+    "status": "Closed",
+    "path": "Root/01 - Research/Immunology/B Cell Biology/Activation",
+    "confidentiality": "Internal"
+  },
+  "metadata": {
+    "author": {
+      "name": "Mark Johnson",
+      "role": "Author",
+      "signedDate": "2024-02-20T18:00:00Z"
+    },
+    "approver": {
+      "name": "David Kumar",
+      "role": "Approver",
+      "signedDate": "2024-02-23T09:30:00Z"
+    }
+  },
+  "sections": {
+    "background": {
+      "text": "Jurkat cells were used as a model for lymphocyte activation. Cells were stimulated with anti-CD3/CD28 crosslinking antibodies for 48h to induce a proliferative and activation phenotype, assessed by Ki67 and early apoptosis markers."
+    },
+    "aim": {
+      "objectives": [
+        "Quantify proliferation in anti-CD3/CD28 stimulated Jurkat cells",
+        "Assess early apoptosis by Annexin V co-staining",
+        "Establish activation-induced marker expression (CD38)"
+      ]
+    },
+    "materials_methods": {
+      "cells": {
+        "species": "human",
+        "type": "jurkat",
+        "source": "In-house cell bank, passage 12",
+        "treatment": "stimulated",
+        "stimulation": "Plate-bound anti-CD3 (1 µg/mL) + soluble anti-CD28 (2 µg/mL), 48h"
+      },
+      "antibodies": [
+        { "target": "CD19", "clone": "HIB19",  "fluorochrome": "BV421",  "vendor": "BioLegend" },
+        { "target": "CD20", "clone": "2H7",    "fluorochrome": "PE",     "vendor": "BioLegend" },
+        { "target": "CD38", "clone": "HIT2",   "fluorochrome": "APC",    "vendor": "BioLegend" },
+        { "target": "Ki67", "clone": "Ki-67",  "fluorochrome": "PE-Cy7", "vendor": "BD Biosciences" }
+      ],
+      "viabilityDye": "Annexin_V",
+      "buffer": "PBS + 2% FBS",
+      "fixation": "BD Cytofix for intracellular Ki67"
+    },
+    "equipment": {
+      "instrument": "BD LSRFortessa",
+      "laserConfig": "405 nm / 488 nm / 561 nm / 638 nm",
+      "softwareVersion": "FACSDiva 9.0"
+    },
+    "method": {
+      "description": "After 48h stimulation, cells were harvested and stained for surface markers at 4°C for 30 min. Fixed and permeabilised for intracellular Ki67 staining. Annexin V added in binding buffer. 30,000 events acquired per sample."
+    },
+    "results": {
+      "notes": "Ki67+ cells increased from 8% (unstimulated) to 67% (stimulated). CD38 upregulation confirmed. Early apoptosis 11% in stimulated condition.",
+      "keyFindings": [
+        "67% Ki67+ in stimulated vs 8% in control",
+        "CD38 MFI 3.5-fold increase post-stimulation",
+        "Annexin V early apoptosis 11% stimulated vs 4% control"
+      ]
+    },
+    "conclusion": {
+      "summary": "Anti-CD3/CD28 stimulation successfully induces proliferation and activation markers in Jurkat cells. Assay suitable for inhibitor screening.",
+      "keyFindings": [
+        "Robust stimulation window established",
+        "Ki67 and CD38 confirmed as activation readouts",
+        "Viability acceptable under stimulation conditions"
+      ]
+    }
+  },
+  "classification": {
+    "function": "assay_development",
+    "dataSource": "in_house",
+    "dataRetention": "medium_term",
+    "modality": "flow_cytometry"
+  },
+  "data": {
+    "rawFiles": [
+      "240220_BCell_Unstimulated.fcs",
+      "240220_BCell_Stimulated_48h.fcs",
+      "240220_BCell_Isotype_Control.fcs"
+    ],
+    "filePath": "//nas/FlowData/BCell_Program/EXP-002/",
+    "analysisFiles": [
+      { "type": "workspace", "name": "240220_BCell_Activation.wsp" },
+      { "type": "excel",     "name": "240220_BCell_Activation_Statistics.xlsx" }
+    ],
+    "attachments": [
+      { "type": "document",     "name": "EXP-002 Flow Report.docx" },
+      { "type": "requestForm",  "name": "FLOW-00456 - B Cell Activation Request.docx" }
+    ]
+  }
+}

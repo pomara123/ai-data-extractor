@@ -1,0 +1,126 @@
+{
+  "experiment": {
+    "id": "EXP-987654",
+    "title": "mAbX23 Fab binding human soluble IL-6 receptor",
+    "version": {
+      "number": 3,
+      "type": "VERSION",
+      "createdOn": "2024-11-18T10:22:31Z"
+    },
+    "status": "Closed",
+    "path": "Root/01 - Research/IL6R Program/Analytics/Biosensor/mAbX23 Fab binding IL6R",
+    "confidentiality": "Restricted Confidential"
+  },
+  "metadata": {
+    "author": {
+      "name": "Jane Doe",
+      "role": "Author",
+      "signedDate": "2025-01-12T08:14:22Z"
+    },
+    "approver": {
+      "name": "Michael Chen",
+      "role": "Approver",
+      "signedDate": "2025-02-03T15:48:10Z"
+    }
+  },
+  "sections": {
+    "background": {
+      "text": "mAbX23 is a monoclonal antibody targeting human IL-6 receptor (IL-6R). It is designed as a non-blocking control antibody for receptor occupancy studies. Literature reports binding affinity in the low nanomolar range (~3.5 nM)."
+    },
+    "aim": {
+      "objectives": [
+        "Measure binding affinity of mAbX23 Fab to human soluble IL-6R at pH 7.4",
+        "Compare dissociation rates versus reference antibody Tocilizumab"
+      ]
+    },
+    "materials_methods": {
+      "sensorChip": "CM5",
+      "runningBuffer": "HBS-EP+, pH 7.4",
+      "regenerationSolution": "10 mM Glycine pH 1.5",
+      "ligand": {
+        "name": "Human soluble IL-6R - 8His",
+        "concentration": "1.5 mg/mL",
+        "captureMethod": "Anti-His capture"
+      },
+      "analytes": [
+        {
+          "name": "mAbX23 Fab",
+          "lot": "LC 5567",
+          "concentration": "20 nM"
+        },
+        {
+          "name": "Tocilizumab Fab",
+          "lot": "LC 4482",
+          "concentration": "20 nM"
+        }
+      ]
+    },
+    "equipment": {
+      "instrument": "Biacore T200",
+      "sensorChipLot": "10345678"
+    },
+    "method": {
+      "description": "SPR-based kinetic analysis using standard capture method. Association and dissociation phases monitored across multiple concentrations. Data fitted using 1:1 binding model where applicable."
+    },
+    "results": {
+      "affinity": [
+        {
+          "analyte": "mAbX23 Fab",
+          "kd": "1.2 nM"
+        },
+        {
+          "analyte": "Tocilizumab Fab",
+          "kd": "0.25 nM"
+        }
+      ],
+      "dissociationRates": [
+        {
+          "analyte": "mAbX23 Fab",
+          "koff": "1.5e-3 s^-1"
+        },
+        {
+          "analyte": "Tocilizumab Fab",
+          "koff": "3.0e-5 s^-1"
+        }
+      ],
+      "notes": "Association rates could not be reliably determined due to avidity effects."
+    },
+    "conclusion": {
+      "summary": "mAbX23 Fab binds IL-6R with moderate affinity (~1.2 nM) but shows significantly faster dissociation compared to Tocilizumab. Reduced binding stability suggests weaker receptor engagement.",
+      "keyFindings": [
+        "5x weaker affinity compared to reference antibody",
+        "50x faster dissociation rate",
+        "Avidity limited accurate ka determination"
+      ]
+    }
+  },
+  "data": {
+    "rawFiles": [
+      "230111 Anti-His immobilisation",
+      "230111 Capture test mAbX23",
+      "230112 Kinetic run mAbX23 IL6R N=3",
+      "230113 Kinetic comparison mAbX23 vs Tocilizumab"
+    ],
+    "filePath": "C:\\BiaCoreData\\IL6R_Project\\",
+    "analysisFiles": [
+      {
+        "type": "excel",
+        "name": "230115 Calculations.xlsx"
+      },
+      {
+        "type": "prism",
+        "name": "mAbX23_IL6R_analysis.pzfx"
+      }
+    ],
+    "attachments": [
+      {
+        "type": "document",
+        "name": "ELN Biosensor Report mAbX23 IL6R.docx"
+      },
+      {
+        "type": "requestForm",
+        "name": "SPR00123 - IL6R Binding Study Request.docx"
+      }
+    ]
+  }
+}

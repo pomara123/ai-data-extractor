@@ -1,0 +1,105 @@
+{
+  "experiment": {
+    "id": "EXP-003",
+    "title": "Macrophage Differentiation Screen",
+    "version": {
+      "number": 4,
+      "type": "VERSION",
+      "createdOn": "2024-03-10T07:30:00Z"
+    },
+    "status": "In Progress",
+    "path": "Root/01 - Research/Innate Immunity/Macrophage Platform/Differentiation Screen",
+    "confidentiality": "Restricted Confidential"
+  },
+  "metadata": {
+    "author": {
+      "name": "Sarah Lee",
+      "role": "Author",
+      "signedDate": "2024-03-10T19:00:00Z"
+    },
+    "approver": {
+      "name": "David Kumar",
+      "role": "Approver",
+      "signedDate": "2024-03-14T11:20:00Z"
+    }
+  },
+  "sections": {
+    "background": {
+      "text": "THP-1 monocytes were differentiated to macrophages using PMA and screened with a compound library for effects on M1/M2 polarisation markers. PD-L1 and PD-1 expression were assessed as checkpoint readouts."
+    },
+    "aim": {
+      "objectives": [
+        "Differentiate THP-1 monocytes to macrophages with PMA",
+        "Screen compound library (n=48) for polarisation marker modulation",
+        "Quantify CD14, CD11b, PD-L1, and PD-1 expression across conditions"
+      ]
+    },
+    "materials_methods": {
+      "cells": {
+        "species": "human",
+        "type": "thp1",
+        "source": "In-house cell bank, passage 8",
+        "treatment": "drug_treated",
+        "differentiation": "100 nM PMA, 72h",
+        "compoundLibrary": "Internal kinase inhibitor panel, 10 µM, 24h post-differentiation"
+      },
+      "antibodies": [
+        { "target": "CD14",  "clone": "61D3",  "fluorochrome": "BV421",  "vendor": "Thermo Fisher" },
+        { "target": "CD11b", "clone": "ICRF44","fluorochrome": "PE",     "vendor": "BioLegend" },
+        { "target": "PDL1",  "clone": "29E.2A3","fluorochrome": "APC",   "vendor": "BioLegend" },
+        { "target": "PD1",   "clone": "EH12.2H7","fluorochrome": "PE-Cy7","vendor": "BioLegend" }
+      ],
+      "viabilityDye": "Zombie_NIR",
+      "buffer": "PBS + 2% FBS",
+      "fixation": "1% PFA post-staining"
+    },
+    "equipment": {
+      "instrument": "BD FACSymphony A5",
+      "laserConfig": "355 nm / 405 nm / 488 nm / 561 nm / 638 nm",
+      "softwareVersion": "FACSDiva 9.1"
+    },
+    "method": {
+      "description": "After compound treatment, cells were detached with accutase, washed, and stained for viability and surface markers at 4°C for 30 min. Fixed in 1% PFA. 20,000 live events acquired per well on high-throughput sampler (HTS)."
+    },
+    "results": {
+      "notes": "Compound 17 (CDK4/6 inhibitor) showed >50% reduction in PD-L1 MFI. CD14 and CD11b confirmed differentiation in all wells. Zombie NIR viability >80% across all conditions.",
+      "keyFindings": [
+        "Compound 17: 52% reduction in PD-L1 MFI vs DMSO control",
+        "Differentiation confirmed: CD14+ CD11b+ >85% in all wells",
+        "3 compounds flagged for cytotoxicity (viability <70%)"
+      ]
+    },
+    "conclusion": {
+      "summary": "Screen identified Compound 17 as a modulator of PD-L1 expression in PMA-differentiated THP-1 macrophages. Follow-up dose-response required.",
+      "keyFindings": [
+        "Compound 17 identified as PD-L1 modulator",
+        "Assay Z-factor 0.62 — suitable for screening",
+        "3 cytotoxic compounds excluded from analysis"
+      ]
+    }
+  },
+  "classification": {
+    "function": "screening",
+    "dataSource": "in_house",
+    "dataRetention": "short_term",
+    "modality": "flow_cytometry"
+  },
+  "data": {
+    "rawFiles": [
+      "240310_Macrophage_Screen_Plate1.fcs",
+      "240310_Macrophage_Screen_Plate2.fcs",
+      "240310_Macrophage_DMSO_Control.fcs",
+      "240310_Macrophage_Unstained.fcs"
+    ],
+    "filePath": "//nas/FlowData/Innate_Immunity/EXP-003/",
+    "analysisFiles": [
+      { "type": "workspace", "name": "240310_Macrophage_Screen.wsp" },
+      { "type": "excel",     "name": "240310_Macrophage_Screen_HitList.xlsx" },
+      { "type": "prism",     "name": "Macrophage_PDL1_Screen.pzfx" }
+    ],
+    "attachments": [
+      { "type": "document",    "name": "EXP-003 Screen Report.docx" },
+      { "type": "requestForm", "name": "FLOW-00789 - Macrophage Screen Request.docx" }
+    ]
+  }
+}

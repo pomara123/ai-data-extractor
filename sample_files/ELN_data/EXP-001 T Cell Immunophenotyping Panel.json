@@ -1,0 +1,103 @@
+{
+  "experiment": {
+    "id": "EXP-001",
+    "title": "T Cell Immunophenotyping Panel",
+    "version": {
+      "number": 2,
+      "type": "VERSION",
+      "createdOn": "2024-01-15T09:00:00Z"
+    },
+    "status": "Closed",
+    "path": "Root/01 - Research/Immunology/T Cell Biology/Phenotyping",
+    "confidentiality": "Internal"
+  },
+  "metadata": {
+    "author": {
+      "name": "Jane Smith",
+      "role": "Author",
+      "signedDate": "2024-01-15T17:30:00Z"
+    },
+    "approver": {
+      "name": "David Kumar",
+      "role": "Approver",
+      "signedDate": "2024-01-18T10:05:00Z"
+    }
+  },
+  "sections": {
+    "background": {
+      "text": "Immunophenotyping of peripheral blood T cell subsets using a multi-colour flow cytometry panel. Healthy donor PBMCs were used to establish baseline distributions of CD4+ and CD8+ T cells, NK cells, and B cells."
+    },
+    "aim": {
+      "objectives": [
+        "Resolve CD4+ and CD8+ T cell populations from fresh PBMCs",
+        "Confirm panel performance against internal reference ranges",
+        "Validate viability gating using DAPI exclusion"
+      ]
+    },
+    "materials_methods": {
+      "cells": {
+        "species": "human",
+        "type": "primary_cells",
+        "source": "Peripheral blood mononuclear cells (PBMCs), healthy donor",
+        "treatment": "untreated",
+        "density": "1x10^6 cells per sample"
+      },
+      "antibodies": [
+        { "target": "CD3",  "clone": "UCHT1",  "fluorochrome": "BV421",  "vendor": "BioLegend" },
+        { "target": "CD4",  "clone": "RPA-T4", "fluorochrome": "PE",     "vendor": "BioLegend" },
+        { "target": "CD8",  "clone": "SK1",    "fluorochrome": "APC",    "vendor": "BioLegend" },
+        { "target": "CD19", "clone": "HIB19",  "fluorochrome": "PE-Cy7", "vendor": "BioLegend" },
+        { "target": "CD45", "clone": "2B11",   "fluorochrome": "PerCP",  "vendor": "BD Biosciences" },
+        { "target": "CD56", "clone": "5.1H11", "fluorochrome": "BV605",  "vendor": "BioLegend" }
+      ],
+      "viabilityDye": "DAPI",
+      "buffer": "PBS + 2% FBS + 2 mM EDTA",
+      "fixation": "None (live panel)"
+    },
+    "equipment": {
+      "instrument": "Thermo Fisher Attune NxT",
+      "laserConfig": "405 nm / 488 nm / 638 nm",
+      "softwareVersion": "Attune NxT v3.2"
+    },
+    "method": {
+      "description": "Cells were stained at 4°C for 30 min in the dark. Washed twice in PBS + 2% FBS. DAPI added immediately before acquisition. 50,000 live events acquired per sample."
+    },
+    "results": {
+      "notes": "CD4:CD8 ratio within normal range (2.1:1). NK cell frequency 12%. B cell frequency 8%. Panel performance confirmed against internal reference ranges.",
+      "keyFindings": [
+        "CD4+ T cells: 42% of CD3+ lymphocytes",
+        "CD8+ T cells: 20% of CD3+ lymphocytes",
+        "Viability >95% across all samples"
+      ]
+    },
+    "conclusion": {
+      "summary": "8-colour T cell panel performs as expected on fresh PBMCs. Suitable for use in downstream stimulation and blocking studies.",
+      "keyFindings": [
+        "Panel validated against reference ranges",
+        "DAPI viability gating confirmed",
+        "No spectral spillover issues observed"
+      ]
+    }
+  },
+  "classification": {
+    "function": "validation",
+    "dataSource": "in_house",
+    "dataRetention": "long_term",
+    "modality": "flow_cytometry"
+  },
+  "data": {
+    "rawFiles": [
+      "240115_TCell_Panel_Donor1.fcs",
+      "240115_TCell_Panel_Donor2.fcs",
+      "240115_TCell_Panel_Donor3.fcs"
+    ],
+    "filePath": "//nas/FlowData/IL6R_Program/EXP-001/",
+    "analysisFiles": [
+      { "type": "workspace", "name": "240115_TCell_Panel.wsp" },
+      { "type": "excel",     "name": "240115_TCell_Panel_Statistics.xlsx" }
+    ],
+    "attachments": [
+      { "type": "document", "name": "EXP-001 Flow Report.docx" }
+    ]
+  }
+}

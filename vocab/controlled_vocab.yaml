@@ -1,0 +1,130 @@
+Data Source:
+  - in_house
+  - external_public
+  - external_collaboration
+  - commercial_vendor
+  - clinical_partner
+  - simulated
+
+Data Retention:
+  - short_term
+  - medium_term
+  - long_term
+  - archived
+  - permanent
+  - unknown
+
+Function:
+  - discovery
+  - validation
+  - assay_development
+  - qc_quality_control
+  - method_development
+  - screening
+  - clinical_support
+  - benchmarking
+
+File Type:
+  - fcs
+  - csv
+  - tsv
+  - xlsx
+  - hdf5
+  - zarr
+  - tiff
+  - nd2
+  - ome_tiff
+  - json
+
+Microscopy Type:
+  - flow_cytometry
+  - confocal
+  - widefield
+  - two_photon
+  - super_resolution
+  - electron_microscopy
+  - spinning_disk
+  - none
+
+Modality:
+  - flow_cytometry
+  - imaging
+  - spectrometry
+  - sequencing
+  - multi_omics
+  - cytometry_mass
+  - high_content_screening
+
+Marker:
+  - CD3
+  - CD4
+  - CD8
+  - CD19
+  - CD20
+  - CD45
+  - CD56
+  - CD11b
+  - CD14
+  - Ki67
+  - Annexin_V
+  - DAPI
+  - Zombie_NIR
+  - PD1
+  - PDL1
+
+Species:
+  - human
+  - mouse
+  - rat
+  - non_human_primate
+  - zebrafish
+  - rabbit
+  - dog
+  - hamster
+  - insect
+  - plant
+  - other
+
+Cell Line:
+  - hela
+  - hek293
+  - hek293t
+  - jurkat
+  - k562
+  - cho
+  - raw264_7
+  - thp1
+  - a549
+  - mcf7
+  - pc3
+  - u937
+  - primary_cells
+  - patient_derived
+  - unknown
+
+Treatment:
+  - untreated
+  - drug_treated
+  - vehicle_control
+  - knockdown
+  - knockout
+  - overexpression
+  - stimulated
+  - inhibited
+  - heat_shock
+  - hypoxia
+  - cytokine_treated
+
+Instrument Name:
+  - bd_lsrfortessa
+  - bd_facscalibur
+  - bd_facsymphony
+  - sony_sp6800
+  - sony_spectral_analyzer
+  - beckman_coulter_cytoflex
+  - beckman_coulter_navios
+  - miltenyi_macssquant
+  - thermo_attune_nxt
+  - agilent_novoCyte
+  - custom_instrument
+  - unknown
