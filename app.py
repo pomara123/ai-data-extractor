@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import yaml
 import json
@@ -210,6 +211,7 @@ if uploaded_file:
 
     if st.button("Save Metadata", type="primary"):
         try:
+            os.makedirs("output", exist_ok=True)
             with open("output/extracted_metadata.json", "w") as f:
                 json.dump(edited_metadata, f, indent=2)
             st.success("Metadata saved to output/extracted_metadata.json")
