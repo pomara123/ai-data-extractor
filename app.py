@@ -188,13 +188,14 @@ if uploaded_file:
             options = vocab.get(vocab_key, []) if vocab_key else []
 
             if field_name == "marker":
-                default = ", ".join(current_value) if isinstance(current_value, list) else ""
-                raw_input = st.text_input(
+                current_list = current_value if isinstance(current_value, list) else []
+                # Values not in vocab still shown so AI output isn't silently dropped
+                extra = [m for m in current_list if m not in options]
+                edited_metadata[field_name] = st.multiselect(
                     label,
-                    value=default,
-                    help=f"Allowed values: {', '.join(options)}" if options else None,
+                    options=extra + options,
+                    default=[m for m in current_list if m in options or m in extra],
                 )
-                edited_metadata[field_name] = [x.strip() for x in raw_input.split(",") if x.strip()]
 
             elif options:
                 display_options = ["(none)"] + options
