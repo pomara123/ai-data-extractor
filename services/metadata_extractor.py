@@ -1,5 +1,3 @@
-import json
-import re
 import logging
 from typing import Dict, Any, TypedDict
 
@@ -19,39 +17,26 @@ class ExtractionResult(TypedDict):
     usage: Dict[str, Any]
 
 
-def _strip_fences(text: str) -> str:
-    text = text.strip()
-    text = re.sub(r"^```(?:json)?\s*", "", text)
-    text = re.sub(r"\s*```$", "", text)
-    return text.strip()
-
-
 def extract_metadata(text: str, vocab: dict, eln_data: dict | None = None) -> ExtractionResult:
     prompt = build_prompt(vocab, text, eln_data)
 
     empty: ExtractionResult = {"metadata": {}, "usage": {}}
 
     try:
-        response = client.chat.completions.create(
+        response = client.beta.chat.completions.parse(
             model="gpt-4.1-mini",
             messages=[
                 {
                     "role": "system",
-                    "content": (
-                        "You are a precise scientific metadata extractor. "
-                        "Always return valid JSON only — no prose, no markdown."
-                    ),
+                    "content": "You are a precise scientific metadata extractor.",
                 },
                 {"role": "user", "content": prompt},
             ],
+            response_format=Metadata,
             temperature=0,
         )
 
-        raw = response.choices[0].message.content
-        cleaned = _strip_fences(raw)
-        parsed = json.loads(cleaned)
-
-        validated = Metadata(**parsed)
+        validated = response.choices[0].message.parsed
 
         usage = response.usage
         prompt_tokens     = usage.prompt_tokens
@@ -70,10 +55,6 @@ def extract_metadata(text: str, vocab: dict, eln_data: dict | None = None) -> Ex
                 "cost_usd":          round(cost, 6),
             },
         }
-
-    except json.JSONDecodeError as e:
-        logger.error("LLM returned non-JSON: %s", e)
-        return empty
 
     except Exception as e:
         logger.error("Metadata extraction failed: %s", e)
