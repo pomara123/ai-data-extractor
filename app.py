@@ -8,8 +8,8 @@ from services.eln_client import list_experiments, get_eln_data
 from models.metadata_models import Metadata
 
 
-st.set_page_config(page_title="Scientific Metadata Extractor", layout="centered")
-st.title("Scientific Metadata Extractor")
+st.set_page_config(page_title="Scientific Metadata Extractor", page_icon="🧬", layout="centered")
+st.title("🧬 Scientific Metadata Extractor")
 
 uploaded_file = st.file_uploader("Upload scientific file")
 
