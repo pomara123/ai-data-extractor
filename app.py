@@ -112,11 +112,21 @@ if uploaded_file:
     # STEP 3: AI EXTRACTION
     # -------------------------
     with st.spinner("Extracting metadata with AI..."):
-        metadata = extract_metadata(text, vocab, eln_data)
+        result = extract_metadata(text, vocab, eln_data)
+
+    metadata = result["metadata"]
+    usage    = result["usage"]
 
     if not metadata:
         st.warning("AI extraction returned no results. You can still fill in the form manually.")
         metadata = {}
+
+    if usage:
+        st.caption(
+            f"AI call — {usage['prompt_tokens']:,} prompt tokens · "
+            f"{usage['completion_tokens']:,} completion tokens · "
+            f"${usage['cost_usd']:.4f}"
+        )
 
     if eln_data:
         metadata["experiment_id"] = eln_data.get("experiment", {}).get("id")
