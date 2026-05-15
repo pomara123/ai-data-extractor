@@ -112,9 +112,21 @@ if uploaded_file:
     # -------------------------
     # STEP 3: AI EXTRACTION
     # -------------------------
-    with st.spinner("Extracting metadata with AI..."):
-        result = extract_metadata(text, vocab, eln_data)
 
+    # Clear cached result when file or ELN selection changes
+    extraction_key = (uploaded_file.name, selected_label)
+    if st.session_state.get("extraction_key") != extraction_key:
+        st.session_state.pop("extraction_result", None)
+        st.session_state["extraction_key"] = extraction_key
+
+    if st.button("Extract Metadata", type="primary"):
+        with st.spinner("Extracting metadata with AI..."):
+            st.session_state["extraction_result"] = extract_metadata(text, vocab, eln_data)
+
+    if "extraction_result" not in st.session_state:
+        st.stop()
+
+    result   = st.session_state["extraction_result"]
     metadata = result["metadata"]
     usage    = result["usage"]
 
@@ -202,14 +214,13 @@ if uploaded_file:
 
         st.divider()
 
-
     # -------------------------
     # STEP 5: OUTPUT
     # -------------------------
     st.subheader("Final Metadata")
     st.json(edited_metadata)
 
-    if st.button("Save Metadata", type="primary"):
+    if st.button("Save Metadata"):
         try:
             os.makedirs("output", exist_ok=True)
             with open("output/extracted_metadata.json", "w") as f:
