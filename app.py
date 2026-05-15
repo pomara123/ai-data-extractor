@@ -221,11 +221,26 @@ if uploaded_file:
     st.subheader("Final Metadata")
     st.json(edited_metadata)
 
-    if st.button("Save Metadata"):
-        try:
-            os.makedirs("output", exist_ok=True)
-            with open("output/extracted_metadata.json", "w") as f:
-                json.dump(edited_metadata, f, indent=2)
-            st.success("Metadata saved to output/extracted_metadata.json")
-        except Exception as e:
-            st.error(f"Failed to save: {e}")
+    empty_fields = [
+        k for k, v in edited_metadata.items()
+        if v is None or v == "" or v == [] or v == "(none)"
+    ]
+
+    if empty_fields:
+        st.warning(f"Empty fields: {', '.join(empty_fields)}")
+
+    save_label = "Save Anyway" if empty_fields and st.session_state.get("save_warned") else "Save Metadata"
+
+    if st.button(save_label):
+        if empty_fields and not st.session_state.get("save_warned"):
+            st.session_state["save_warned"] = True
+            st.rerun()
+        else:
+            st.session_state.pop("save_warned", None)
+            try:
+                os.makedirs("output", exist_ok=True)
+                with open("output/extracted_metadata.json", "w") as f:
+                    json.dump(edited_metadata, f, indent=2)
+                st.success("Metadata saved to output/extracted_metadata.json")
+            except Exception as e:
+                st.error(f"Failed to save: {e}")
