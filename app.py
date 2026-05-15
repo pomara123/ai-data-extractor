@@ -11,10 +11,7 @@ from models.metadata_models import Metadata
 st.set_page_config(page_title="Scientific Metadata Extractor", layout="centered")
 st.title("Scientific Metadata Extractor")
 
-uploaded_file = st.file_uploader(
-    "Upload scientific file",
-    type=["txt", "csv", "fcs"]
-)
+uploaded_file = st.file_uploader("Upload scientific file")
 
 if uploaded_file:
 
@@ -90,6 +87,26 @@ if uploaded_file:
                 st.markdown("**Objectives**")
                 for obj in objectives:
                     st.caption(f"• {obj}")
+
+            conclusion = sections.get("conclusion", {})
+            conclusion_summary = conclusion.get("summary")
+            conclusion_findings = conclusion.get("keyFindings", [])
+            if conclusion_summary or conclusion_findings:
+                st.markdown("**Conclusion**")
+                if conclusion_summary:
+                    st.caption(conclusion_summary)
+                for finding in conclusion_findings:
+                    st.caption(f"• {finding}")
+
+            results = sections.get("results", {})
+            results_notes = results.get("notes")
+            results_findings = results.get("keyFindings", [])
+            if results_notes or results_findings:
+                st.markdown("**Results**")
+                if results_notes:
+                    st.caption(results_notes)
+                for finding in results_findings:
+                    st.caption(f"• {finding}")
 
     # -------------------------
     # STEP 3: AI EXTRACTION
